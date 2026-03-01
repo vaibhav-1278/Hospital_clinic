@@ -8,10 +8,10 @@ var session = require("express-session");
 const { time } = require("console");
 
 var conn = mysql.createConnection({
-    host: "localhost",
+    host: "dpg-d6i1pe94tr6s73c3n4hg-a",
     user: "root",
-    password: "root",
-    database: "mauli_clinic"
+    password: "XqfsH3E4C9L4MloecMGwkSV5FkEF5vAy",
+    database: "hospitalclinic"
 });
 
 var app = server();
