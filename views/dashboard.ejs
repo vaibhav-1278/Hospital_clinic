@@ -1,0 +1,82 @@
+<%- include('navbar.ejs') %>
+
+<!-- Summary Cards -->
+<div class="row mt-4">
+  <div class="col-md-3 col-sm-6 mb-4">
+    <div class="dashboard-card">
+      <div class="card-icon doctors-icon">
+        <i class="fas fa-user-md"></i>
+      </div>
+      <div class="card-value"><%= data[0].total_doctors %></div>
+      <div class="card-label">Total Doctors</div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6 mb-4">
+    <div class="dashboard-card">
+      <div class="card-icon appointments-icon">
+        <i class="fas fa-calendar-check"></i>
+      </div>
+      <div class="card-value"><%= data[0].total_appointments %></div>
+      <div class="card-label">Total Appointments</div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6 mb-4">
+    <div class="dashboard-card">
+      <div class="card-icon pending-icon">
+        <i class="fas fa-clock"></i>
+      </div>
+      <div class="card-value"><%= data[0].pending_appointments %></div>
+      <div class="card-label">Pending Appointments</div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6 mb-4">
+    <div class="dashboard-card">
+      <div class="card-icon completed-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <div class="card-value"><%= data[0].completed_appointments %></div>
+      <div class="card-label">Completed Appointments</div>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="quick-actions mt-5">
+  <h5 class="mb-4">Quick Actions</h5>
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="action-card">
+        <div class="action-icon">
+          <i class="fas fa-plus"></i>
+        </div>
+        <h5>Add New Doctor</h5>
+        <p>Add a new doctor to the system with their details and specialization.</p>
+        <a href="/add_doctor"><button class="btn btn-primary action-btn">Add Doctor</button></a>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="action-card">
+        <div class="action-icon">
+          <i class="fas fa-list"></i>
+        </div>
+        <h5>View Doctor List</h5>
+        <p>Manage all doctors, update their information or remove from the system.</p>
+        <a href="/view_doctors"><button class="btn btn-primary action-btn">View Doctors</button></a>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="action-card">
+        <div class="action-icon">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <h5>Manage Appointments</h5>
+        <p>View, schedule, or update patient appointments and their status.</p>
+        <a href="/view_appointments"><button class="btn btn-primary action-btn">Manage</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<%- include('footer.ejs') %>

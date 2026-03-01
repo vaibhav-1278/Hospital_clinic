@@ -1,0 +1,12 @@
+<h1>edit now</h1>
+
+<form action="/update_appointment" method="POST">
+    <input type="hidden" name="staff_id" id="" value="<%= appointment.staff_id %>">
+    <input type="hidden" name="appointment_id" value="<%= appointment.appointment_id %>"><br><br>
+    <input type="text" name="patient_name" value="<%= appointment.patient_name %>"><br><br>
+    <input type="text" name="patient_mobile" value="<%= appointment.patient_mobile %>"><br><br>
+<input type="date" name="appointment_date" 
+       value="<%= appointment.appointment_date.toISOString().split('T')[0] %>"><br><br>
+
+    <button>update_appointment</button>
+</form>

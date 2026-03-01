@@ -1,0 +1,117 @@
+<%- include('navbar.ejs') %>
+
+<div class="container mt-5">
+    <div class="dashboard-card p-4 mb-4">
+        <h2 class="mb-4">Doctor List</h2>
+                <style>
+                    .doctor-table thead {
+                        background: linear-gradient(90deg, #0052cc 0%, #00b8d9 100%);
+                        color: #fff;
+                        font-size: 1.1rem;
+                    }
+                    .doctor-table th {
+                        text-align: center;
+                        letter-spacing: 1px;
+                        font-weight: 600;
+                        border-bottom: 2px solid #00b8d9;
+                    }
+                    .doctor-table tbody tr {
+                        background-color: #f8f9fa;
+                        transition: background 0.2s;
+                    }
+                    .doctor-table tbody tr:hover {
+                        background-color: #e3f2fd;
+                    }
+                    .doctor-table td {
+                        text-align: center;
+                        color: #333;
+                        font-size: 1rem;
+                    }
+                </style>
+                <table class="table table-striped table-bordered table-hover doctor-table">
+                    <thead>
+                        <tr>
+                            <th>Doctor No</th>
+                            <th>Doctor Name</th>
+                            <th>Doctor Specialization</th>
+                            <th>Doctor In Time</th>
+                            <th>Doctor Out Time</th>
+                            <th>Avg Checkup Minutes</th>
+                    <th>Actions</th>
+                </tr>
+                    </thead>
+            <tbody>
+                <% for(var i=0; i < doctors.length; i++) { var doctor = doctors[i]; %>
+                <tr>
+                    <td><%= i+1 %></td>
+                    <td><%= doctor.doctor_name %></td>
+                    <td><%= doctor.doctor_specialization %></td>
+                    <td><%= doctor.doctor_in_time %></td>
+                    <td><%= doctor.doctor_out_time %></td>
+                    <td><%= doctor.avg_checkup_minutes %></td>
+                    <td>
+                        <a href="/edit_doctor/<%= doctor.doctor_id %>" class="action-btn edit-btn" title="Edit">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="/delete_doctor/<%= doctor.doctor_id %>" class="action-btn delete-btn" title="Delete" onclick="return confirm('Are you sure you want to delete this doctor?');">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+            <style>
+                .dashboard-btn {
+                    background: linear-gradient(90deg, #0052cc 0%, #00b8d9 100%);
+                    color: #fff;
+                    border: none;
+                    border-radius: 20px;
+                    padding: 0.35em 1.2em;
+                    font-size: 0.95rem;
+                    font-weight: 600;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                    transition: background 0.2s, box-shadow 0.2s;
+                    margin-top: 1.2em;
+                    display: inline-block;
+                    text-decoration: none !important;
+                }
+                .dashboard-btn:hover {
+                    background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+                    color: #fff;
+                    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+                    text-decoration: none !important;
+                }
+                .action-btn {
+                    
+                    display: inline-block;
+                    border: none;
+                    background: none;
+                    color: #007bff;
+                    font-size: 1.3em;
+                    margin: 0 0.3em;
+                    padding: 0.2em 0.4em;
+                    border-radius: 6px;
+                    transition: background 0.2s, color 0.2s;
+                    text-decoration: none !important;
+                }
+                .edit-btn:hover {
+                    background: hsl(205, 87%, 94%);
+                    color: #0052cc;
+                }
+                .delete-btn {
+                    color: #dc3545;
+                }
+                .delete-btn:hover {
+                    background: #f8d7da;
+                    color: #c82333;
+                }
+            </style>
+                <a href="/dashboard" class="dashboard-btn">&#8592; Back to Dashboard</a>
+                <a href="/add_doctor" class="dashboard-btn" style="margin-left: 1em; background: linear-gradient(90deg, #28a745 0%, #00c853 100%);">
+                    <i class="fas fa-user-plus"></i> Add Doctor
+                </a>
+    </div>
+</div>
+
+<%- include('footer.ejs') %>

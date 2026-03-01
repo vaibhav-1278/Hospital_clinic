@@ -1,0 +1,174 @@
+<%- include('navbar.ejs') %>
+
+<div class="container mt-5">
+    <div class="dashboard-card p-4 mb-4">
+        <h2 class="mb-4">🩺 View Appointments</h2>
+
+        <!-- Doctor Filter Links -->
+        <div class="doctor-links mb-4">
+            <% for(var i = 0; i < doctors.length; i++) { %>
+                <a href="/view_appointments?doctor_id=<%= doctors[i].doctor_id %>" class="dashboard-btn">
+                    <%= doctors[i].doctor_name %>  (<%= doctors[i].total %>)
+                </a>
+            <% } %>
+        </div>
+
+        <!-- Appointments Table -->
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover doctor-table">
+                <thead>
+                    <tr>
+                        <th>Details</th>
+                        <th>Sr No</th>
+                        <th>Doctor Name</th>
+                        <th>Patient Name</th>
+                        <th>Patient Mobile</th>
+                        <th>Appointment Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i = 0; i < appointments.length; i++) { 
+                        var a = appointments[i]; %>
+                    <tr>
+                        <td>
+                            <a href="/appointment_details/<%= a.appointment_id %>" 
+                               class="action-btn detail-btn" 
+                               title="View Details">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </td>
+                        <td><%= i+1 %></td>
+                        <td><%= a.doctor_name %></td>
+                        <td><%= a.patient_name %></td>
+                        <td><%= a.patient_mobile %></td>
+                        <td><%= a.appointment_date.toISOString().split('T')[0] %></td>
+                        <td><%= a.appointment_status %></td>
+                        <td>
+                            <a href="/edit_appointment/<%= a.appointment_id %>" class="action-btn edit-btn" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="/delete_appointment/<%= a.appointment_id %>" class="action-btn delete-btn" title="Delete" onclick="return confirm('Are you sure you want to delete this doctor?');">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Back to Dashboard Buttons -->
+        <div class="dashboard-buttons mt-4">
+            <a href="/add_new_appointment" class="dashboard-btn btn-large">
+                &#8592; Add New Appointment
+            </a>
+            <a href="/view_completed_appointments" class="dashboard-btn btn-large">
+                &#8592;  Completed Appointments
+            </a>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+body {
+    background: #f0f2f5;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.dashboard-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* Doctor Filter Buttons */
+.doctor-links .dashboard-btn {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, #0052cc 0%, #00b8d9 100%);
+    color: #fff;
+    border-radius: 20px;
+    padding: 0.35em 1.2em;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.doctor-links .dashboard-btn:hover {
+    background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+/* Appointments Table */
+.doctor-table thead {
+    background: linear-gradient(90deg, #0052cc 0%, #00b8d9 100%);
+    color: #fff;
+    font-size: 1.1rem;
+}
+.doctor-table th {
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 600;
+    border-bottom: 2px solid #00b8d9;
+}
+.doctor-table tbody tr {
+    background-color: #f8f9fa;
+    transition: background 0.2s;
+}
+.doctor-table tbody tr:hover {
+    background-color: #e3f2fd;
+}
+.doctor-table td {
+    text-align: center;
+    color: #333;
+    font-size: 1rem;
+}
+
+/* Action Buttons */
+.action-btn {
+    display: inline-block;
+    border: none;
+    background: none;
+    color: #198754;
+    font-size: 1.3em;
+    margin: 0 0.3em;
+    padding: 0.2em 0.4em;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none !important;
+}
+.view-btn:hover {
+    background: #157347;
+    color: #fff;
+}
+
+/* Add / View Appointment Buttons */
+.dashboard-buttons .dashboard-btn {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.6em 1.5em;
+    border-radius: 25px;
+    text-decoration: none !important;
+    transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+.dashboard-buttons .dashboard-btn:hover {
+    background: linear-gradient(90deg, #218838 0%, #17a2b8 100%);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+.btn-large {
+    font-size: 1.1rem;
+    padding: 0.7em 2em;
+}
+
+</style>
+<%- include('footer.ejs') %>

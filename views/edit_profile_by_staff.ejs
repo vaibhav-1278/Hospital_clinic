@@ -1,0 +1,14 @@
+<%- include('navbar.ejs') %>
+
+<h1>edit Profile</h1>
+<form action="/update_profile_by_staff" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="staff_id" id="" value="<%=staff.staff_id%>"><br><br>
+    staff_name:
+    <input type="text" name="staff_name" id="" value="<%=staff.staff_name%>"><br><br>
+    staff_mobile
+    <input type="number" name="staff_mobile" id="" value="<%=staff.staff_mobile%>"><br><br>
+    staff_photo:
+    <input type="file" name="staff_photo" id=""><br><br>
+    <button>update</button>
+</form>
+<%- include('footer.ejs') %>
