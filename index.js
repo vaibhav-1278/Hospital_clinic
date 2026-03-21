@@ -39,8 +39,9 @@ app.post('/save_registration', async function(req, res){
     try {
         var d = req.body;
 
-        if(d.staff_password !== d.confirm_password){
-            return res.send("Password Mismatch");
+        if(d.staff_password !== d.Confirm_password){
+            res.render("password mismatch");
+            
         }
 
         var sql = "INSERT INTO staff(staff_name,staff_email,staff_mobile,staff_password,staff_hospital_name) VALUES(?,?,?,?,?)";
