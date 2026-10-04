@@ -6,12 +6,13 @@ var url = require("url");
 var upload = require("express-fileupload");
 var session = require("express-session");
 const { time } = require("console");
+require("dotenv").config();
 
 var conn = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "root",
-    database: "mauli_clinic"
+    host: "behveskt9btebu5fejo1-mysql.services.clever-cloud.com",
+    user: "ueymzqxzyeui7v2h",
+    password: "6KFpNX2XUR1vrPFEusun",
+    database: "behveskt9btebu5fejo1"
 });
 
 var app = server();
@@ -367,6 +368,6 @@ app.get('/logout', function(req, res){
 });
 
 // Start Server
-app.listen(1000, function(){
-    console.log("Server running on port 1000");
+app.listen(process.env.PORT || 1000, function(){
+    console.log("Server running on port " + (process.env.PORT || 1000));
 });
